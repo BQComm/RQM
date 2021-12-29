@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="stylesheet.css">
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <title>Random Quote Machine</title>
+    <script>
+      const QUOTEBANK = [
+        {
+          quote: 'Success is not final, failure is not fatal: it is the courage to continue that counts.',
+          author: '-Winston Churchill'
+        },
+        {
+          quote: 'Always forgive your enemies; nothing annoys them so much.',
+          author: '-Oscar Wilde'
+        },
+        {
+          quote: 'The world is indeed comic, but the joke is on mankind.',
+          author: '-H.P. Lovecraft'
+        }
+      ];
+
+      window.onload = init;
+      function init() {
+        generateQuote()
+      };
+
+      function generateQuote() {
+        let quoteSize = QUOTEBANK.length;
+        let randomIndex = Math.floor(Math.random() * quoteSize);
+        let randomQuoteData = QUOTEBANK[randomIndex];
+
+        let twitterLink = 'https://twitter.com/intent/tweet?hashtags=';
+        let twitterLinkQuote = randomQuoteData.quote.replace(/ /g, '%20');
+        twitterLink += twitterLinkQuote
+
+        let twitterLinkAuthor = randomQuoteData.author.replace(/ /g, '%20');
+        twitterLink += twitterLinkAuthor
+
+        document.getElementById('tweet-quote').href = twitterLink;
+        document.getElementById('text').innerText = randomQuoteData.quote;
+        document.getElementById('author').innerText = randomQuoteData.author;
+      };
+    </script>
+</head>
+<body>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <wrapper id="quote-box" >
+      <div id="text" class="animate__animated animate__fadeInUp"></div>
+        <div id="author" class="animate__animated animate__fadeInUp"></div>
+          <button id="new-quote" onclick="generateQuote()" class="animate__animated animate__fadeInUp">NEW QUOTE</button>
+          <a href="#" id="tweet-quote" class="animate__animated animate__fadeInUp" target="_blank">TWEET QUOTE</a>
+
+    </wrapper>
+</body>
+<footer>
+  <h4 class="animate__animated animate__fadeInUp">A project for freeCodeCamp! by <a href='https://www.bryanquiroz.com' class="my-link">Bryan S.</a></h4>
+</footer>
+</html>
